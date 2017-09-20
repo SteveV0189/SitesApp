@@ -1,0 +1,55 @@
+﻿@page
+@model AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@Model.Message</h3>
+<div class="col-md-12">
+    @foreach (var site in Model.Sites)
+    {
+        <div class="row">
+            <div class="col-md-2">
+                <i>Site</i>
+                <dl>
+                    <dt>Id - </dt>
+                    <dd>@site.Id</dd>
+                    <dt>Name - </dt>
+                    <dd>@site.Name</dd>
+                    <dt>Sensors - @site.Sensors.Count</dt>
+                </dl>
+            </div>
+            @foreach (var s in site.Sensors)
+            {
+                <div class="col-md-2">
+                    <i>Sensor</i>
+                    <dl>
+                        <dt>Id - </dt>
+                        <dd>@s.SensorTypeId</dd>
+                        <dt>Name - </dt>
+                        <dd>@s.SensorName</dd>
+                        <dt>SiteId - </dt>
+                        <dd>@s.SiteId</dd>
+                        <dt>Observations - @s.Observations.Count</dt>
+                    </dl>
+                </div>
+                @foreach (var o in s.Observations)
+                {
+                    <div class="col-md-2">
+                        <i>Observation</i>
+                        <dl>
+                            <dt>Id - </dt>
+                            <dd>@o.Id</dd>
+                            <dt>Value - </dt>
+                            <dd>@o.ObsValue</dd>
+                            <dt>Time - </dt>
+                            <dd>@o.ObsDateTime</dd>
+                            <dt>SensorName - </dt>
+                            <dd>@o.SensorName</dd>
+                        </dl>
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>
